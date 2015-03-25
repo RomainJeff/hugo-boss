@@ -1,0 +1,119 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Hugo Boss</title>
+
+	<link rel="stylesheet" href="styles/style.css">
+	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+</head>
+<body>
+	<div class="page page-3">
+		<div class="container">
+			<a href="#"><h1>HUGO BOSS</h1></a>
+			<ul id="menu" class="menu">
+				<a href="suits.html"><li>SUITS</li></a>
+				<a href="#"><li>COLLECTIONS</li></a>
+				<a href="#"><li>ESSENTIALS</li></a>
+				<a href="#"><li>EVENTS</li></a>
+				<a href="#"><li>CONTACT</li></a>
+			</ul>
+			<h2>THE ANATOMY OF SUIT</h2>
+			<div class="info-container">
+					<p>
+						HUGO BOSS is focusing on more luxurious range of products.<br/>
+						The new HUGO BOSS store is willing to present its highest standard in terms of products, placing the suits as the main interest of the brand.<br/>
+						Today, we are pleased to introduce you the opening of our new boutique located at :
+						<br/>
+						<br/>
+						115 avenue des Champs-Élysées, 75008 Paris
+				</p>
+				<a href="#" id="discover-collection"><span>DISCOVER OUR COLLECTIONS</span></a>
+			</div>
+
+
+			<!-- Need help -->
+			<div id="need-help" class="help-icon"><span></span></div>
+		</div>
+	</div>
+
+	<!-- Tutoriel -->
+	<section class="tutoriel-overlay"></section>
+	<section class="tutoriel-point" data-element="discover-collection" data-side="right"><span>Découvrez notre nouvelle collection</span></section>
+	<section class="tutoriel-point" data-element="menu" data-side="left"><span>Naviguer à travers notre boutique</span></section>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script>
+		var displayed = false;
+
+		$('#need-help').on('click', function () {
+			// Si il est deja affiche
+			if (displayed == true) {
+				var i = 1;
+				$('.tutoriel-point').each(function () {
+					var that = this;
+
+					setTimeout(function () {
+						$(that).children('span').removeClass('active');
+
+						setTimeout(function () {
+							$(that).removeClass('active');
+						}, 500);
+					}, (300 * i));
+
+					i++;
+				});
+
+				displayed = false;
+				var that = this;
+
+				setTimeout(function () {
+					$('.tutoriel-overlay').removeClass('active');
+					$(that).removeClass('close');
+				}, (500 * i));
+
+				return false;
+			}
+
+			displayed = true;
+			$('.tutoriel-overlay').addClass('active');
+			$(this).addClass('close');
+
+			var i = 1;
+			$('.tutoriel-point').each(function () {
+				var that = this;
+				var side = $(this).attr('data-side');
+				var element = $('#'+ $(this).attr('data-element'));
+				var topPosition = element.offset().top;
+
+				switch (side) {
+					case "left":
+						var leftPosition = element.offset().left + 30;
+						break;
+					case "right":
+						var leftPosition= element.offset().left + 450;
+						topPosition += 20;
+						break;
+				}
+
+				$(that).css({
+					top: topPosition,
+					left: leftPosition
+				});
+
+				setTimeout(function () {
+					$(that).addClass('active');
+					setTimeout(function () {
+						$(that).children('span').addClass('active');
+					}, 500);
+				}, (300 * i));
+
+				i++;
+			});
+		});
+
+
+
+	</script>
+</body>
+</html>

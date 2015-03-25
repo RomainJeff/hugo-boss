@@ -1,0 +1,62 @@
+<html lang="fr">
+<head>
+	<title>Hugo Boss</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+	<div class="background background-loading active"></div>
+	<div class="background background-page"></div>
+
+	<div class="page page-1">
+		<h1>HUGO BOSS</h1>
+
+		<h2>CHOOSE YOUR LANGUAGE</h2>
+		<ul>
+			<li>FR</li>
+			<li>EN</li>
+			<li>GE</li>
+			<li>RU</li>
+			<li>CN</li>
+			<li>IN</li>
+		</ul>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script>
+		$('ul li').on('click', function () {
+			window.location.href = "homepage.html";
+		});
+
+		// Loading anim
+		$(document).ready(function () {
+			$('h1').animate({opacity: 1});
+
+			setTimeout(function () {
+				$('h1').animate({top: "10vh"}, function () {
+					$('.background-loading').removeClass('active');
+					$('.background-page').addClass('active');
+					$('h1').addClass('active');
+
+					setTimeout(function () {
+						$('h2').addClass('active');
+
+						setTimeout(function () {
+							var i = 1;
+							$('ul li').each(function () {
+								var that = this;
+
+								setTimeout(function() {
+									$(that).addClass('active');
+								}, (200 * i));
+
+								i++;
+							});
+						}, 1000);
+					}, 1500);
+				});
+			}, 1000);
+		});
+	</script>
+</body>
+</html>
